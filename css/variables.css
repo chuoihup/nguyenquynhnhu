@@ -1,0 +1,117 @@
+/* ============================================================
+   KHANG PORTFOLIO — CYBER TECH DESIGN TOKENS (variables.css)
+   Futuristic Cyberpunk / Sci-Fi Palettes & Typography
+============================================================ */
+
+:root {
+  /* Cyber Neons */
+  --clr-cyber-cyan:   #00f2fe;
+  --clr-cyber-blue:   #38bdf8;
+  --clr-cyber-purple: #a855f7;
+  --clr-cyber-pink:   #f43f5e;
+  --clr-cyber-green:  #10b981;
+  --clr-cyber-yellow: #f59e0b;
+
+  --clr-primary:       #00f2fe;
+  --clr-primary-dark:  #0284c7;
+  --clr-primary-light: rgba(0, 242, 254, 0.12);
+  --clr-primary-mid:   #38bdf8;
+  --clr-primary-rgb:   0, 242, 254;
+
+  --clr-accent-yellow: #f59e0b;
+  --clr-accent-pink:   #ec4899;
+  --clr-accent-purple: #a855f7;
+  --clr-accent-green:  #10b981;
+  --clr-accent-orange: #f97316;
+
+  /* Surfaces (Light Mode = Clean Cyber Lab) */
+  --clr-bg:          #f1f5f9;
+  --clr-bg-alt:      #e2e8f0;
+  --clr-card:        rgba(255, 255, 255, 0.9);
+  --clr-card-glass:  rgba(255, 255, 255, 0.7);
+  --clr-text:        #0f172a;
+  --clr-muted:       #475569;
+  --clr-border:      rgba(14, 165, 233, 0.35);
+  --clr-border-glow: rgba(0, 242, 254, 0.25);
+  --grid-line:       rgba(14, 165, 233, 0.08);
+
+  --clr-success: #10b981;
+  --clr-error:   #ef4444;
+
+  /* Typography */
+  --font-base:    'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  --font-xs:   0.75rem;
+  --font-sm:   0.875rem;
+  --font-md:   1rem;
+  --font-lg:   1.125rem;
+  --font-xl:   1.25rem;
+  --font-2xl:  1.5rem;
+  --font-3xl:  1.875rem;
+
+  /* Spacing */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+
+  /* Borders & Radius */
+  --border-width: 1.5px;
+  --border:       1.5px solid var(--clr-border);
+
+  --radius-sm:   8px;
+  --radius-md:   14px;
+  --radius-lg:   20px;
+  --radius-xl:   26px;
+  --radius-2xl:  34px;
+  --radius-full: 9999px;
+
+  /* Cyber Glow Shadows */
+  --shadow-cartoon-sm: 0 4px 15px rgba(0, 242, 254, 0.15);
+  --shadow-cartoon-md: 0 8px 25px rgba(0, 242, 254, 0.2);
+  --shadow-cartoon-lg: 0 12px 35px rgba(0, 242, 254, 0.25);
+
+  --shadow-sm:      0 2px 12px rgba(0, 242, 254, 0.12);
+  --shadow-md:      0 8px 30px rgba(0, 0, 0, 0.15);
+  --shadow-lg:      0 16px 50px rgba(0, 242, 254, 0.22);
+  --shadow-neon:    0 0 25px rgba(0, 242, 254, 0.4);
+  --shadow-purple:  0 0 25px rgba(168, 85, 247, 0.4);
+
+  --nav-height:      70px;
+  --container-width: 1200px;
+
+  --transition-fast:   0.18s ease;
+  --transition-base:   0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Cyber Obsidian Dark Mode (Default Futuristic Theme) */
+[data-theme="dark"] {
+  --clr-bg:          #060814;
+  --clr-bg-alt:      #0b0f20;
+  --clr-card:        rgba(13, 20, 38, 0.82);
+  --clr-card-glass:  rgba(10, 16, 32, 0.88);
+  --clr-text:        #f8fafc;
+  --clr-muted:       #94a3b8;
+  --clr-border:      rgba(0, 242, 254, 0.25);
+  --clr-border-glow: rgba(0, 242, 254, 0.45);
+  --grid-line:       rgba(0, 242, 254, 0.06);
+
+  --clr-primary-light: rgba(0, 242, 254, 0.14);
+
+  --shadow-cartoon-sm: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-cartoon-md: 0 8px 30px rgba(0, 0, 0, 0.6);
+  --shadow-cartoon-lg: 0 16px 45px rgba(0, 0, 0, 0.7);
+
+  --shadow-neon:   0 0 30px rgba(0, 242, 254, 0.45);
+  --shadow-purple: 0 0 30px rgba(168, 85, 247, 0.45);
+}
