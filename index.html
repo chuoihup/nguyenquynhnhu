@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio ca nhan cua Nguyen Quynh Nhu - Sinh vien UTH. Cyber Tech 3D WebGL Portfolio." />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma"        content="no-cache" />
+  <meta http-equiv="Expires"       content="0" />
+  <title>Nguyễn Quỳnh Như — Game Developer & Lập trình viên | 3D Cyber Portfolio</title>
+
+  <!-- Fonts: Space Grotesk + JetBrains Mono + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+  <!-- Third-party CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- App CSS (order matters: variables first) -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Inline: apply saved theme before first paint to avoid flash (default: dark) -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('khang-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    }());
+  </script>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       CUSTOM CYBER RETICLE CURSOR (High-Tech Dual-Layer)
+  ====================================================== -->
+  <div id="cyber-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring">
+      <svg class="cursor-reticle" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="reticle-bracket" d="M 8 14 L 8 8 L 14 8" stroke="#00f2fe" stroke-width="1.8" stroke-linecap="round"/>
+        <path class="reticle-bracket" d="M 26 8 L 32 8 L 32 14" stroke="#00f2fe" stroke-width="1.8" stroke-linecap="round"/>
+        <path class="reticle-bracket" d="M 32 26 L 32 32 L 26 32" stroke="#00f2fe" stroke-width="1.8" stroke-linecap="round"/>
+        <path class="reticle-bracket" d="M 14 32 L 8 32 L 8 26" stroke="#00f2fe" stroke-width="1.8" stroke-linecap="round"/>
+        <circle class="reticle-circle" cx="20" cy="20" r="10" stroke="#00f2fe" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+        <line x1="20" y1="2" x2="20" y2="6" stroke="#00f2fe" stroke-width="1.5"/>
+        <line x1="20" y1="34" x2="20" y2="38" stroke="#00f2fe" stroke-width="1.5"/>
+        <line x1="2" y1="20" x2="6" y2="20" stroke="#00f2fe" stroke-width="1.5"/>
+        <line x1="34" y1="20" x2="38" y2="20" stroke="#00f2fe" stroke-width="1.5"/>
+      </svg>
+      <span class="cursor-label"></span>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       GAME CYBER PRELOADER (Node 05 — Nguyễn Quỳnh Như)
+  ====================================================== -->
+  <div id="game-preloader" class="game-preloader" aria-label="Đang khởi tạo trò chơi" role="status">
+    <div class="game-preloader__content">
+      <div class="game-preloader__spinner" aria-hidden="true">
+        <div class="game-spinner-ring game-spinner-ring--outer"></div>
+        <div class="game-spinner-ring game-spinner-ring--inner"></div>
+        <div class="game-spinner-core">🎮</div>
+      </div>
+
+      <div class="game-preloader__telemetry">
+        <div class="game-preloader__brand">NODE 05 // NGUYỄN QUỲNH NHƯ · GAME DEV</div>
+        <div class="game-preloader__status" id="game-status">NẠP GAME ASSETS & SHADERS...</div>
+
+        <div class="game-preloader__bar">
+          <div class="game-preloader__fill" id="game-fill"></div>
+        </div>
+
+        <div class="game-preloader__metrics">
+          <span class="game-metric" id="game-percent">0%</span>
+          <span class="game-metric-status">GAME_ENGINE_READY</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cyber Pulse click container -->
+  <div id="cyber-pulse-container" aria-hidden="true"></div>
+
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- =====================================================
+       NAVBAR  (Tiêu chí #1)
+  ====================================================== -->
+  <header class="navbar" id="navbar" role="banner">
+    <nav class="navbar__inner" aria-label="Dieu huong chinh">
+
+      <a href="#hero" class="navbar__logo" aria-label="Trang chu NGUYEN QUYNH NHU">
+        QN
+      </a>
+
+      <!-- Desktop menu -->
+      <ul class="navbar__menu" role="list">
+        <li><a href="#about"      class="navbar__link">Gioi thieu</a></li>
+        <li><a href="#skills"     class="navbar__link">Ky nang</a></li>
+        <li><a href="#experience" class="navbar__link">Kinh nghiem</a></li>
+        <li><a href="#projects"   class="navbar__link">Du an</a></li>
+        <li><a href="#contact"    class="navbar__link">Lien he</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <div class="navbar__status-pill" aria-hidden="true" style="display:inline-flex; align-items:center; gap:0.45rem; font-family:var(--font-mono); font-size:0.72rem; color:var(--clr-cyber-green); background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.35); padding:0.3rem 0.75rem; border-radius:var(--radius-full);">
+          <span class="status-dot" style="width:7px; height:7px; border-radius:50%; background:#10b981; box-shadow:0 0 8px #10b981;"></span>
+          <span>DEV_ONLINE</span>
+        </div>
+
+        <!-- Dark mode toggle -->
+        <button class="btn-theme" id="btn-theme"
+                aria-label="Chuyen che do toi / sang">
+          <span class="icon-sun"  aria-hidden="true">&#9728;&#65039;</span>
+          <span class="icon-moon" aria-hidden="true">&#127769;</span>
+        </button>
+
+        <!-- Hamburger (mobile) -->
+        <button class="navbar__burger" id="nav-burger"
+                aria-label="Mo menu" aria-expanded="false"
+                aria-controls="nav-mobile">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <nav class="navbar__mobile" id="nav-mobile" aria-label="Menu di dong">
+      <ul role="list">
+        <li><a href="#about"      class="navbar__link">Gioi thieu</a></li>
+        <li><a href="#skills"     class="navbar__link">Ky nang</a></li>
+        <li><a href="#experience" class="navbar__link">Kinh nghiem</a></li>
+        <li><a href="#projects"   class="navbar__link">Du an</a></li>
+        <li><a href="#contact"    class="navbar__link">Lien he</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===================================================
+         HERO  (Tiêu chí #1 #2)
+    ==================================================== -->
+    <section class="section hero" id="hero" aria-label="Gioi thieu">
+
+      <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
+      <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
+
+      <div class="container hero__wrap">
+
+        <!-- Text column -->
+        <div class="hero__text">
+          <p class="hero__greeting">Xin chao, toi la &#128075;</p>
+
+          <h1 class="hero__name">
+            Nguyen <span>QUYNH NHƯ</span>
+          </h1>
+
+          <h2 class="hero__role" aria-label="Vi tri dinh huong">
+            <span id="typed-role"></span>
+          </h2>
+
+          <p class="hero__bio">
+            Sinh vien Cong nghe thong tin tai UTH, dinh huong
+            <strong>Lập trình viên </strong>.
+            Dam me game
+          </p>
+
+          <div class="hero__cta">
+            <a href="#projects" class="btn btn--primary">Xem du an &#128640;</a>
+            <a href="#contact"  class="btn btn--outline">Lien he toi &#128233;</a>
+          </div>
+
+          <div class="hero__badges">
+            <span class="hero__badge">&#9749; Java</span>
+            <span class="hero__badge">&#127807; Spring Boot</span>
+            <span class="hero__badge">&#128444;&#65039; MySQL</span>
+          </div>
+        </div>
+
+        <!-- Visual column: 3D Holographic Quantum Tech Reactor -->
+        <div class="hero__visual">
+          <div class="hero__3d-wrap">
+            <div id="khang-3d-canvas" class="hero__3d-canvas" aria-label="Lập trình viên "></div>
+            <div class="hero__3d-hud-ring" aria-hidden="true"></div>
+            <div class="hero__3d-hud-corners" aria-hidden="true"></div>
+            <div class="hero__3d-telemetry" aria-hidden="true">
+              <span class="status-dot" style="width:6px;height:6px;border-radius:50%;background:#00f2fe;box-shadow:0 0 6px #00f2fe;"></span>
+              <span>JAVA_CORE // 3D WEBGL ONLINE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#about" class="hero__scroll-hint" aria-label="Cuon xuong">
+        <span>Kham pha</span>
+        <span aria-hidden="true">&#8595;</span>
+      </a>
+    </section>
+
+    <!-- ===================================================
+         ABOUT  (Tiêu chí #2 #3)
+    ==================================================== -->
+    <section class="section" id="about" aria-label="Ve toi">
+      <div class="container">
+
+        <h2 class="sec-title" data-aos="fade-up">
+          Ve <span>toi</span>
+        </h2>
+        <p class="sec-sub" data-aos="fade-up" data-aos-delay="100">
+          Mot chut ve ban than va muc tieu cua toi
+        </p>
+
+        <div class="about__grid">
+
+          <!-- Avatar -->
+          <div class="about__image-wrap" data-aos="fade-right">
+            <img
+              src="assets/images/1793062227573_71244830772991783_839649711360886397_2049b8334e844cfcc1db01898de7f27f.jpg"
+              alt="Anh dai dien Nguyen Quynh NHU"
+              class="about__avatar"
+              onerror="this.style.display='none';
+                       this.nextElementSibling.style.display='flex'" />
+            <div class="about__avatar-fallback" style="display:none"
+                 aria-label="Anh dai dien">
+              &#128100;
+            </div>
+
+            <div class="about__location-badges">
+              <span class="about__location-badge">&#127891; UTH</span>
+              <span class="about__location-badge">&#128205; TP.HCM</span>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="about__content" data-aos="fade-left" data-aos-delay="100">
+
+            <!-- Info grid -->
+            <div class="about__info">
+              <div class="about__info-item">
+                <span class="about__info-icon">&#127891;</span>
+                <div>
+                  <span class="about__info-label">Truong</span>
+                  <span class="about__info-value">DH GTVT TP.HCM (UTH)</span>
+                </div>
+              </div>
+              <div class="about__info-item">
+                <span class="about__info-icon">&#128218;</span>
+                <div>
+                  <span class="about__info-label">Nganh</span>
+                  <span class="about__info-value">Cong nghe thong tin</span>
+                </div>
+              </div>
+              <div class="about__info-item">
+                <span class="about__info-icon">&#128197;</span>
+                <div>
+                  <span class="about__info-label">Nam hoc</span>
+                  <span class="about__info-value">Nam 3 (2024 — nay)</span>
+                </div>
+              </div>
+              <div class="about__info-item">
+                <span class="about__info-icon">&#127919;</span>
+                <div>
+                  <span class="about__info-label">Dinh huong</span>
+                  <span class="about__info-value">Lap trinh vien </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- GPA -->
+            <div class="about__stat-row"
+                 data-aos="fade-up" data-aos-delay="150">
+              <span class="about__stat-label">GPA</span>
+              <div class="progress-bar"
+                   role="progressbar"
+                   aria-valuenow="75.5" aria-valuemin="0" aria-valuemax="100"
+                   aria-label="GPA 2.8tren 4.00">
+                <div class="progress-bar__fill" data-percent="71"></div>
+              </div>
+              <span class="about__stat-value">2.8 / 4.00</span>
+            </div>
+
+            <!-- Bio -->
+            <div class="about__bio"
+                 data-aos="fade-up" data-aos-delay="200">
+              <p>
+                Toi la <strong>Nguyen Quynh Nhu</strong>, sinh vien nganh
+                Cong nghe thong tin tai Truong Dai hoc Giao thong van tai
+                TP. Ho Chi Minh. Toi dinh huong phat trien trong linh vuc
+              Lap trinh game
+              </p>
+              <p>
+                Toi dang cu cung kien thuc lap trinh qua cac du an thuc te,
+                dong thoi tim kiem co hoi thuc tap de tich luy kinh nghiem.
+              </p>
+            </div>
+
+            <!-- Career goals (Tiêu chí #3) -->
+            <div class="about__goal-box"
+                 data-aos="fade-up" data-aos-delay="250">
+              <h3 class="about__goal-title">&#127919; Muc tieu nghe nghiep</h3>
+              <div class="about__goal-grid">
+                <div class="goal-card goal-card--short">
+                  <span class="goal-card__label">Ngan han</span>
+                  <p>
+                    Tim kiem vi tri
+                    <strong>Lap trinh vien </strong>,
+                 
+                  </p>
+                </div>
+                <div class="goal-card goal-card--long">
+                  <span class="goal-card__label">Dai han</span>
+                  <p>
+                    Tro thanh <strong>Lap Trinh Vien</strong>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.about__content -->
+        </div><!-- /.about__grid -->
+      </div>
+    </section>
+
+    <!-- ===================================================
+         SKILLS  (Tiêu chí #4)
+    ==================================================== -->
+    <section class="section" id="skills" aria-label="Ky nang">
+      <div class="container">
+
+        <h2 class="sec-title" data-aos="fade-up">Ky <span>nang</span></h2>
+        <p class="sec-sub" data-aos="fade-up" data-aos-delay="100">
+          Cac cong nghe toi dang su dung
+        </p>
+
+        <div class="skills__grid">
+
+          <div class="skill-card" data-aos="zoom-in" data-aos-delay="0">
+            <div class="skill-card__icon">&#9749;</div>
+            <h3 class="skill-card__name">Java</h3>
+            <span class="skill-card__level skill-card__level--intermediate">Intermediate</span>
+          </div>
+
+          <div class="skill-card" data-aos="zoom-in" data-aos-delay="80">
+            <div class="skill-card__icon">&#127807;</div>
+            <h3 class="skill-card__name">Spring Boot</h3>
+            <span class="skill-card__level skill-card__level--intermediate">Intermediate</span>
+          </div>
+
+          <div class="skill-card" data-aos="zoom-in" data-aos-delay="240">
+            <div class="skill-card__icon">&#9883;&#65039;</div>
+            <h3 class="skill-card__name">React</h3>
+            <span class="skill-card__level skill-card__level--beginner">Beginner</span>
+          </div>
+          <div class="skill-card" data-aos="zoom-in" data-aos-delay="400">
+            <div class="skill-card__icon">&#128025;</div>
+            <h3 class="skill-card__name">Git / GitHub</h3>
+            <span class="skill-card__level skill-card__level--intermediate">Intermediate</span>
+          </div>
+
+        </div><!-- /.skills__grid -->
+      </div>
+    </section>
+
+    <!-- ===================================================
+         EXPERIENCE  (Tiêu chí #5)
+         Tabs: Hoc van / Kinh nghiem / Hoat dong
+    ==================================================== -->
+    <section class="section" id="experience" aria-label="Kinh nghiem">
+      <div class="container">
+
+        <h2 class="sec-title" data-aos="fade-up">Qua <span>trinh</span></h2>
+        <p class="sec-sub" data-aos="fade-up" data-aos-delay="100">
+          Hoc van, kinh nghiem va hoat dong cua toi
+        </p>
+
+        <!-- Tab buttons  (Tiêu chí #14) -->
+        <div class="tabs" role="tablist" aria-label="Phan loai"
+             data-aos="fade-up" data-aos-delay="150">
+          <button class="tab-btn is-active"
+                  role="tab" aria-selected="true"
+                  aria-controls="tab-education" id="btn-education">
+            &#127891; Hoc van
+          </button>
+          <button class="tab-btn"
+                  role="tab" aria-selected="false"
+                  aria-controls="tab-experience" id="btn-experience">
+            &#128188; Kinh nghiem
+          </button>
+          <button class="tab-btn"
+                  role="tab" aria-selected="false"
+                  aria-controls="tab-activities" id="btn-activities">
+            &#127775; Hoat dong
+          </button>
+        </div>
+
+        <!-- Panel: Hoc van -->
+        <div class="tab-panel" id="tab-education"
+             role="tabpanel" aria-labelledby="btn-education">
+          <div class="timeline">
+            <div class="timeline__item" data-aos="fade-right">
+              <div class="timeline__dot"></div>
+              <div class="timeline__card">
+                <span class="timeline__period">2023 — nay</span>
+                <h3 class="timeline__title">
+                  Dai hoc Giao thong Van tai TP. Ho Chi Minh
+                </h3>
+                <p class="timeline__role">Nganh: Cong nghe thong tin</p>
+                <p class="timeline__desc">
+                  GPA: <strong>2,8 / 4.00</strong> —
+                  Dang theo hoc chuong trinh dai hoc chinh quy,
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  
+
+           <!-- ===================================================
+         PROJECTS  (Tiêu chí #6 #14)
+         Swiper + Filter + Modal
+    ==================================================== -->
+       <!-- ===================================================
+         CERTIFICATES & HOBBIES  (Tiêu chí #7)
+    ==================================================== -->
+    <section class="section" id="certificates"
+             aria-label="Chung chi va so thich">
+      <div class="container">
+
+        <h2 class="sec-title" data-aos="fade-up">
+          Chung chi <span>&amp;</span> So thich
+        </h2>
+
+        <!-- Certificates -->
+        <div class="cert__grid">
+          <div class="cert-card" data-aos="zoom-in">
+            <div class="cert-card__icon">&#128220;</div>
+            <p class="cert-card__name">Chua co chung chi</p>
+            <p class="cert-card__issuer">Dang cap nhat</p>
+          </div>
+        </div>
+
+        <!-- Awards -->
+        <div style="margin-bottom: 2rem;" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="hobbies__title">&#127942; Giai thuong</h3>
+          <div class="cert__grid">
+            <div class="cert-card">
+              <div class="cert-card__icon">&#127942;</div>
+              <p class="cert-card__name">Chua co giai thuong</p>
+                         </div>
+          </div>
+        </div>
+
+        <!-- Hobbies -->
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h3 class="hobbies__title">So thich cua toi</h3>
+          <div class="hobbies__list">
+            <span class="hobby-tag">&#127918; Gaming</span>
+            <span class="hobby-tag">&#127925; Nghe nhac</span>
+            <span class="hobby-tag">&#128187; Badminton</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================
+         CONTACT  (Tiêu chí #15)
+    ==================================================== -->
+    <section class="section" id="contact" aria-label="Lien he">
+      <div class="container">
+
+        <h2 class="sec-title" data-aos="fade-up">Lien <span>he</span></h2>
+        <p class="sec-sub" data-aos="fade-up" data-aos-delay="100">
+          Hay ket noi voi toi!
+        </p>
+
+        <div class="contact__grid">
+
+          <!-- Info column -->
+          <div class="contact__info" data-aos="fade-right">
+
+            <div class="contact__item">
+              <span class="contact__item-icon">&#128231;</span>
+              <div>
+                <p class="contact__item-label">Email</p>
+                <a href="mailto:nhunq92184@ut.edu.vn"
+                   class="contact__item-value">
+                 nhunq92184@ut.edu.vn
+                </a>
+              </div>
+            </div>
+
+            <div class="contact__item">
+              <span class="contact__item-icon">&#128025;</span>
+              <div>
+                <p class="contact__item-label">GitHub</p>
+                <a href="https://github.com/chuihup"
+                   class="contact__item-value"
+                   target="_blank" rel="noopener noreferrer">
+                  NguyenQuynhNhuwork
+                </a>
+              </div>
+            </div>
+
+            <div class="contact__item">
+              <span class="contact__item-icon">&#128205;</span>
+              <div>
+                <p class="contact__item-label">Dia chi</p>
+                <span class="contact__item-value">
+                  TP. Ho Chi Minh, Viet Nam
+                </span>
+              </div>
+            </div>
+
+            <div class="contact__availability">
+              <span class="availability-dot"></span>
+              <p>Dang tim kiem co hoi thuc tap</p>
+            </div>
+
+          </div><!-- /.contact__info -->
+
+          <!-- Form  (Tiêu chí #15) -->
+          <form class="contact__form" id="contact-form"
+                novalidate
+                data-aos="fade-left" data-aos-delay="100">
+
+            <div class="form-group">
+              <label for="form-name" class="form-label">
+                Ho va ten
+                <span class="form-label__required" aria-hidden="true">*</span>
+              </label>
+              <input type="text" id="form-name" name="name"
+                     class="form-input"
+                     placeholder="Nhap ho va ten cua ban"
+                     required autocomplete="name" />
+              <span class="form-error" id="err-name"
+                    role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="form-email" class="form-label">
+                Email
+                <span class="form-label__required" aria-hidden="true">*</span>
+              </label>
+              <input type="email" id="form-email" name="email"
+                     class="form-input"
+                     placeholder="example@email.com"
+                     required autocomplete="email" />
+              <span class="form-error" id="err-email"
+                    role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="form-subject" class="form-label">Chu de</label>
+              <select id="form-subject" name="subject"
+                      class="form-input form-select">
+                <option value="">-- Chon chu de --</option>
+                <option value="internship">Co hoi thuc tap</option>
+                <option value="collaboration">Hop tac du an</option>
+                <option value="other">Khac</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="form-msg" class="form-label">
+                Noi dung
+                <span class="form-label__required" aria-hidden="true">*</span>
+              </label>
+              <textarea id="form-msg" name="message"
+                        class="form-input form-textarea"
+                        placeholder="Noi dung tin nhan (toi thieu 10 ky tu)"
+                        required minlength="10" rows="5"></textarea>
+              <span class="form-error" id="err-msg"
+                    role="alert" aria-live="polite"></span>
+            </div>
+
+            <button type="submit" id="form-submit"
+                    class="btn btn--primary contact__submit">
+              <span class="btn__text">Gui tin nhan &#9993;&#65039;</span>
+              <span class="btn__loading" hidden>Dang gui...</span>
+            </button>
+
+          </form>
+
+          <!-- Success message -->
+          <div class="contact__success" id="contact-success"
+               hidden aria-live="polite">
+            <div class="contact__success-icon">&#9989;</div>
+            <h3>Gui thanh cong!</h3>
+            <p>Cam on ban da lien he. Toi se phan hoi som nhat co the!</p>
+          </div>
+
+        </div><!-- /.contact__grid -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <p class="footer__copy">
+        &copy; 2024 Nguyen Quynh NHU. Made with &#10084;&#65039; &amp; &#9749;
+      </p>
+      <div class="footer__links">
+        <a href="https://github.com/chuihup"
+           class="footer__link"
+           target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+        <a href="#hero" class="footer__link">&#8593; Len dau</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================
+       PAGE DATA  (read by projects.js and main.js)
+  ====================================================== -->
+  <script>
+    window.PROJECTS = {
+      'ai-tasker': {
+        title:  'Lap Trinh Vien',
+        type:   'Du an nhom',
+        desc:   'Chua co  '  ,
+        github: 'https://github.com/chuihup',
+        emoji:  '&#129302;'
+      }
+    };
+  </script>
+
+  <!-- =====================================================
+       THIRD-PARTY LIBRARIES  (Three.js, Lottie, GSAP, Swiper, AOS, Typed.js)
+  ====================================================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"       defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"               defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"                   defer></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"                                       defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.min.js"       defer></script>
+
+  <!-- =====================================================
+       APP SCRIPTS
+  ====================================================== -->
+  <script src="js/three-hero.js" defer></script>
+  <script src="js/utils.js"    defer></script>
+  <script src="js/navbar.js"   defer></script>
+  <script src="js/tabs.js"     defer></script>
+  <script src="js/projects.js" defer></script>
+  <script src="js/form.js"     defer></script>
+  <script src="js/cursor.js"   defer></script>
+  <script src="js/tilt.js"     defer></script>
+  <script src="js/main.js"     defer></script>
+
+</body>
+</html>
