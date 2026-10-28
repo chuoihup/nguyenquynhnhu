@@ -1,0 +1,130 @@
+/* ==========================================================
+   responsive.css - Media queries
+   Breakpoints: 1024px (tablet), 768px (mobile), 480px (small)
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   Tablet (max 1024px)
+   ---------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about__image-wrap {
+    position: static;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--sp-6);
+  }
+
+  .contact__info {
+    position: static;
+  }
+
+  .hero__wrap {
+    gap: var(--sp-8);
+  }
+
+  .hero__3d-wrap {
+    width: 360px;
+    height: 360px;
+  }
+}
+
+/* ----------------------------------------------------------
+   Mobile (max 768px)
+   ---------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar__menu   { display: none; }
+  .navbar__burger { display: flex; }
+
+  /* Hero: stack vertically */
+  .hero__wrap {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-block: var(--sp-8) var(--sp-12);
+  }
+
+  .hero__visual  {
+    order: -1;
+    margin-bottom: var(--sp-4);
+  }
+
+  .hero__3d-wrap {
+    width: 300px;
+    height: 300px;
+    margin-inline: auto;
+  }
+
+  .hero__bio  { margin-inline: auto; text-align: center; }
+  .hero__cta,
+  .hero__badges { justify-content: center; }
+
+  /* About */
+  .about__image-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about__avatar,
+  .about__avatar-fallback { width: 220px; height: 220px; }
+
+  .about__info      { grid-template-columns: 1fr; }
+  .about__goal-grid { grid-template-columns: 1fr; }
+
+  /* Skills */
+  .skills__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-3);
+  }
+
+  /* Projects */
+  .projects__swiper .swiper-slide { width: 300px; }
+
+  /* Contact */
+  .contact__grid   { grid-template-columns: 1fr; }
+  .contact__form   { padding: var(--sp-5); }
+  .contact__success { grid-column: 1; position: static; }
+
+  /* General */
+  .section { padding-block: var(--sp-16); }
+
+  .footer__inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* ----------------------------------------------------------
+   Small (max 480px)
+   ---------------------------------------------------------- */
+@media (max-width: 480px) {
+  html { font-size: 15px; }
+
+  .container { padding-inline: var(--sp-4); }
+
+  .hero__3d-wrap {
+    width: 250px;
+    height: 250px;
+  }
+
+  .skills__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects__swiper .swiper-slide { width: 260px; }
+
+  .swiper-button-next,
+  .swiper-button-prev { display: none; }
+
+  .about__avatar,
+  .about__avatar-fallback { width: 180px; height: 180px; }
+
+  .tab-btn {
+    padding: var(--sp-2) var(--sp-3);
+    font-size: var(--font-sm);
+  }
+}
